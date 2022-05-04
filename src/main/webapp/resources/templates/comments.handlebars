@@ -1,0 +1,14 @@
+<div id="wrapper">
+	<div><button onclick="logout()">Logout</button></div>
+	<label for="commentbox">Write your post here</label><br>
+	<textarea id="commentbox" name="comments" rows="4" cols="50"></textarea>
+	<br>
+	<button onclick="postComment()">Submit </button>
+	<div id="renderComments">
+		{{#each array}}
+		<div>		
+    		{{this}}
+  		</div>
+		{{/each}}
+	</div>
+	</div>
