@@ -2,6 +2,7 @@ name: Release for the project
 on: push
 jobs :
  release-project:
+  permissions: write-all
   name: Release project to github release
   runs-on: ubuntu-latest
   steps:
