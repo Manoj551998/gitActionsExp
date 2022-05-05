@@ -6,14 +6,7 @@ jobs :
   runs-on: ubuntu-latest
   needs: build-project
   steps:
-    - name: Download content
-      uses: actions/download-artifact@v2
-      with:
-       name: build-project
-    - name: Archieve site content
-      uses: thedoctor0/zip-release@master
-      with:
-        filename: site.zip
+  
     - name: Create Github Release
       uses: actions/create-release@v1
       env:
@@ -21,29 +14,4 @@ jobs :
       with:
         tag_name: v${{ github.run_number }}
         release_name: Release V${{ github.run_number }}
-    - name: Upload asset to Github release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-        asset_path: ./site.zip
-        asset_name: site-v${{ github.run_number }}.zip
-        asset_content_type: application/zip
-        
- build-project:
-       name: Build project
-       runs-on: ubuntu-latest
-       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
-         - name: Install NPM dependencies
-           run: npm install
-         - name: Build a project
-           run: npm run build
-         - name: upload a project
-           uses: actions/upload-artifact@v2
-           with:
-            name: project
-            path: out/
-         
+    
