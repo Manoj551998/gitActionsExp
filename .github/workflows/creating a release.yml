@@ -1,5 +1,7 @@
 name: Release for the project
-on: push
+on: 
+ push:
+   branches: [ main ]
 jobs :
  release-project:
   permissions: write-all
