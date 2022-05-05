@@ -1,0 +1,33 @@
+name: Release for the project
+on: push
+jobs :
+ release-project:
+  name: Release project to github release
+  runs-on: ubuntu-latest
+  
+  steps:
+    - name: Download site content
+      uses: actions/download-artifact@v3
+      with:
+        name: static-site
+    - name: Archieve site content
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: site.zip
+    - name: Create Github Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release V${{ github.run_number }}
+    - name: Upload asset to Github release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./site.zip
+        asset_name: site-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
+        
