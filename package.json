@@ -1,0 +1,19 @@
+{
+  "name": "gitactionsexp",
+  "version": "1.0.0",
+  "description": "this is for demo edit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manoj551998/gitActionsExp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manoj551998/gitActionsExp/issues"
+  },
+  "homepage": "https://github.com/Manoj551998/gitActionsExp#readme"
+}
