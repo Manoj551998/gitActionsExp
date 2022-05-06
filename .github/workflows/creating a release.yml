@@ -13,7 +13,7 @@ jobs :
       run: dir
     - name: Read release.zip and use it as a body of new release
       run: |
-       r=$(cat path/to/release.zip)
+       r=$(cat path/to/README.md)
        r="${r//'%'/'%25'}"
        r="${r//$'\n'/'%0A'}"                           
        r="${r//$'\r'/'%0D'}"                             
