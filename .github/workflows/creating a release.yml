@@ -33,7 +33,7 @@ jobs :
         asset_name: site-v${{ github.run_number }}.zip
         asset_content_type: application/zip
         
-      build-project:
+ build-project:
        name: Build project
        runs-on: ubuntu-latest
        steps:
