@@ -2,15 +2,15 @@ name: Release for the project
 on: push
 jobs :
  release-project:
+  permissions: write-all
   name: Release project to github release
   runs-on: ubuntu-latest
-  needs: build-project
   steps:
-  
     - name: Create Github Release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ github.run_number }}
-        release_name: Release V${{ github.run_number }}
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+         
