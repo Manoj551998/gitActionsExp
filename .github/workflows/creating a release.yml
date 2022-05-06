@@ -6,32 +6,31 @@ jobs :
   runs-on: ubuntu-latest
   needs: build-project
   steps:
-  
+   
     - name: Chekout the repo
       uses: actions/checkout@v2
     - name: Print the dir
       run: dir
-    - name: Read release.zip and use it as a body of new release
-      run: |
-       r=$(cat path/to/README.md)
-       r="${r//'%'/'%25'}"
-       r="${r//$'\n'/'%0A'}"                           
-       r="${r//$'\r'/'%0D'}"                             
-       echo "::set-output name=RELEASE_BODY::$r"   
-    - name: Upload Binaries to Release
-      uses: svenstaro/upload-release-action@v2
-      with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
-          body: |
-            ${{ steps.read_release.outputs.RELEASE_BODY }}
+      
     - name: Create Github Release
       uses: actions/create-release@v1
+      id: create_release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ github.run_number }}
-        release_name: Release V${{ github.run_number }}
+        release_name: Release V${{ github.run_number }}  
+      
+    - name: upload windows artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./bin/release.zip
+        asset_name: Release.zip
+        asset_content_type: application/zip
+   
         
  build-project:
        name: Build project
@@ -45,4 +44,4 @@ jobs :
            uses: actions/upload-artifact@v2
            with:
             name: project
-            path: out/
+            path: bin/
