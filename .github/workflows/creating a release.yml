@@ -29,6 +29,11 @@ jobs :
         run: |
           cd target 
           ls -a
+      - name: upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+         name: artifacts
+         path: out/
  release-project:
   permissions: write-all
   name: Automated project release
