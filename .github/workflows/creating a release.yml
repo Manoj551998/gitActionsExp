@@ -46,6 +46,8 @@ jobs :
        name: artifacts
     - name: Test artifact download
       run: ls -a
+    - name: To print dir
+      run: dir
     - name: Chekout the repo
       uses: actions/checkout@v2
     - name: Print the dir before creating the zip file
