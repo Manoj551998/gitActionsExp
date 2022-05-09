@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.jni.User;
 import com.mysql.cj.protocol.Resultset;
 import com.postApp.model.Comment;
 import com.postApp.model.Users;
