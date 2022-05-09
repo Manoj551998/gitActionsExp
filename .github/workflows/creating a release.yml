@@ -44,14 +44,11 @@ jobs :
       uses: actions/download-artifact@v2
       with:
        name: artifacts
+       path: target
     - name: Test artifact download
-      run: ls -R
+      run: ls -a
     - name: Chekout the repo
       uses: actions/checkout@v2
-    - name: What is the target folder?
-      run: |
-        cd target 
-        ls -a
     - name: Print the dir before creating the zip file
       run: dir
     - name: create release
